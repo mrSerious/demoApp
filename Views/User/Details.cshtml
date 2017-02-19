@@ -1,0 +1,62 @@
+@model DemoApp.Models.User
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Jobs)
+        </dt>
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>Title</th>
+                    <th>Due Date</th>
+                    <th>Job Status</th>
+                    <th></th>
+                </tr>
+                @foreach (var item in Model.Jobs)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DueDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsComplete)
+                        </td>
+                        <td>
+                            <a asp-controller="Job" asp-action="Edit">Edit</a>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.UserId">Edit</a> |
+    <a asp-area="" asp-controller="Job" asp-action="Create" asp-route-id="@Model.UserId">Add New Job</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+Contact GitHub API Training Shop Blog About
